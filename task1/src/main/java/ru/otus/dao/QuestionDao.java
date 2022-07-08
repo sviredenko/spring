@@ -3,7 +3,7 @@ package ru.otus.dao;
 import ru.otus.domain.Question;
 
 public class QuestionDao {
-    Reader reader;
+    final private Reader reader;
     private QuestionDao(Reader reader){
         this.reader = reader;
     }

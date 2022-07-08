@@ -4,8 +4,8 @@ import ru.otus.dao.Reader;
 
 public class Question {
     private String answer;
-    private String rightAnswer;
-    private String question;
+    final private String rightAnswer;
+    final private String question;
     public Question(String question, String answer){
         this.rightAnswer = answer;
         this.question = question;

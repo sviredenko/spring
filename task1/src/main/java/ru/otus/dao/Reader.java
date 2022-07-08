@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Reader {
 
-    private Question[] list;
+    final private Question[] list;
     public  Reader(String filename) throws IOException {
         String buf1;
         String buf2;

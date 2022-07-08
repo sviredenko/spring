@@ -3,8 +3,8 @@ import ru.otus.domain.Question;
 import java.util.Scanner;
 import ru.otus.dao.QuestionDao;
 public class ServiceQuestion {
-    private QuestionDao dao;
-    private Question[] questions;
+    final private QuestionDao dao;
+    final private Question[] questions;
     public ServiceQuestion(QuestionDao dao){
         this.dao = dao;
         questions = dao.getAllQuestion();
