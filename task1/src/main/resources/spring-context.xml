@@ -4,17 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- TODO: определите бин класса ru.otus.spring.dao.PersonDaoSimple -->
     <bean id = "str" class = "java.lang.String">
         <constructor-arg  value = "./Q.csv"/>
     </bean>
-    <bean id="reader" class = "ru.otus.reader.Reader">
+    <bean id="reader" class = "ru.otus.dao.Reader">
         <constructor-arg name = "filename" ref = "str"/>
     </bean>
-    <bean id="question" class="ru.otus.domain.Question">
+    <bean id = "dao" class = "ru.otus.dao.Dao">
         <constructor-arg name = "reader" ref = "reader"/>
     </bean>
-    <bean id = "console" class = "ru.otus.console.Console">
-        <constructor-arg name = "question" ref = "question"/>
+    <bean id = "console" class = "ru.otus.service.Console">
+        <constructor-arg name = "dao" ref = "dao"/>
     </bean>
 </beans>
