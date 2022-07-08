@@ -10,10 +10,10 @@
     <bean id="reader" class = "ru.otus.dao.Reader">
         <constructor-arg name = "filename" ref = "str"/>
     </bean>
-    <bean id = "dao" class = "ru.otus.dao.Dao">
+    <bean id = "dao" class = "ru.otus.dao.QuestionDao">
         <constructor-arg name = "reader" ref = "reader"/>
     </bean>
-    <bean id = "console" class = "ru.otus.service.Console">
+    <bean id = "console" class = "ru.otus.service.ServiceQuestion">
         <constructor-arg name = "dao" ref = "dao"/>
     </bean>
 </beans>

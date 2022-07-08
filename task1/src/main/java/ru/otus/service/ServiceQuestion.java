@@ -1,11 +1,11 @@
 package ru.otus.service;
 import ru.otus.domain.Question;
 import java.util.Scanner;
-import ru.otus.dao.Dao;
-public class Console {
-    private Dao dao;
+import ru.otus.dao.QuestionDao;
+public class ServiceQuestion {
+    private QuestionDao dao;
     private Question[] questions;
-    public Console(Dao dao){
+    public ServiceQuestion(QuestionDao dao){
         this.dao = dao;
         questions = dao.getAllQuestion();
     }
