@@ -3,9 +3,9 @@ package ru.otus.dao;
 import ru.otus.domain.Question;
 
 public class QuestionDao {
-    final private Reader reader;
-    private QuestionDao(Reader reader){
+    private final  Reader reader;
+    public QuestionDao(Reader reader){
         this.reader = reader;
     }
-    public Question[] getAllQuestion() { return reader.getAllQuestion();}
+    public Question[] getAllQuestion() { return this.reader.getAllQuestion();}
 }
