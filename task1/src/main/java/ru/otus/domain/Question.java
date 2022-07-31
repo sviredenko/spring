@@ -1,7 +1,5 @@
 package ru.otus.domain;
 
-import ru.otus.dao.Reader;
-
 public class Question {
     private String answer;
     private final  String rightAnswer;
@@ -19,5 +17,14 @@ public class Question {
     }
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        Question quest = (Question) obj;
+        if (quest.getQuestion().equals(this.getQuestion())) {
+            /*и верните */
+            return true;
+        }
+        return false;
     }
 }
