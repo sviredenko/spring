@@ -3,10 +3,10 @@ import org.springframework.beans.factory.annotation.Value;
 import ru.otus.domain.Question;
 import java.util.Scanner;
 import ru.otus.dao.QuestionDao;
-public class ServiceQuestion {
+public class QuestionService {
     private final QuestionDao dao;
 
-    public ServiceQuestion(QuestionDao dao){
+    public QuestionService(QuestionDao dao){
         this.dao = dao;
     }
     public Question[] getAllQuestions(){
@@ -20,7 +20,7 @@ public class ServiceQuestion {
         questions = this.getAllQuestions();
         Scanner in = new Scanner(System.in);
         int countTrueAnswer = 0;
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < questions.length; i++) {
             System.out.println(questions[i].getQuestion());
             questions[i].setAnswer(in.next());
             if(questions[i].checkQuestion()){

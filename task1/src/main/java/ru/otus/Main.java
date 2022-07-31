@@ -2,14 +2,14 @@ package ru.otus;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import ru.otus.service.ServiceQuestion;
+import ru.otus.service.QuestionService;
 
 @ComponentScan(basePackages = "ru.otus")
 @Configuration
 public class Main {
     public static void main(String[] args){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        ServiceQuestion console  = context.getBean(ServiceQuestion.class);
+        QuestionService console  = context.getBean(QuestionService.class);
         console.consoleLog();
     }
 }
