@@ -1,4 +1,4 @@
-package ru.otus.domain;
+package ru.otus.task4.domain;
 
 public class Question {
     private String answer;

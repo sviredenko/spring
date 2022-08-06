@@ -1,6 +1,6 @@
-package ru.otus.dao;
+package ru.otus.task4.dao;
 
-import ru.otus.domain.Question;
+import ru.otus.task4.domain.Question;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
