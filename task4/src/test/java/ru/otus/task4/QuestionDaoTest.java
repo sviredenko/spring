@@ -1,11 +1,10 @@
-package ru.otus;
+package ru.otus.task4;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import ru.otus.dao.QuestionDao;
-import ru.otus.domain.Question;
+
+import ru.otus.task4.dao.QuestionDao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

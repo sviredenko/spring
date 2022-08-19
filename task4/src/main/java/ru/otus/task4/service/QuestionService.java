@@ -1,8 +1,11 @@
-package ru.otus.service;
+package ru.otus.task4.service;
+
 import org.springframework.beans.factory.annotation.Value;
-import ru.otus.domain.Question;
+import ru.otus.task4.dao.QuestionDao;
+import ru.otus.task4.domain.Question;
+
 import java.util.Scanner;
-import ru.otus.dao.QuestionDao;
+
 public class QuestionService {
     private final QuestionDao dao;
 

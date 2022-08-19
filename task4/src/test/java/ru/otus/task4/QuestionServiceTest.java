@@ -1,4 +1,4 @@
-package ru.otus;
+package ru.otus.task4;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -7,13 +7,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.otus.dao.QuestionDao;
-import ru.otus.domain.Question;
-import ru.otus.service.QuestionService;
+import ru.otus.task4.dao.QuestionDao;
+import ru.otus.task4.domain.Question;
+import ru.otus.task4.service.QuestionService;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willReturn;
 
 @DisplayName("Класс сервис")
 @ExtendWith(MockitoExtension.class)
