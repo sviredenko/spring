@@ -1,15 +1,21 @@
 package ru.otus.task4.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 import ru.otus.task4.domain.Question;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+@Component
+@PropertySource("classpath:settings.properties")
 public class QuestionDao {
-
-
     private final String filename;
-    public QuestionDao(String filename){
+
+    @Autowired
+    public QuestionDao(@Value("${filename}") String filename){
         this.filename = filename;
     }
     public Question[] getAllQuestion() {
