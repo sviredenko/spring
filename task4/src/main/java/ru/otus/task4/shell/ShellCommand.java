@@ -16,13 +16,10 @@ import ru.otus.task4.service.QuestionService;
 @ShellComponent
 @RequiredArgsConstructor
 public class ShellCommand {
-    String userName;
-    private QuestionService questionService;
+    private String userName;
+    final private QuestionService questionService;
 
-    @Autowired
-    ShellCommand(QuestionService questionService){
-        this.questionService = questionService;
-    }
+
 
     @ShellMethod(value = "Login command", key = {"l", "login"})
     public String login(@ShellOption(defaultValue = "AnyUser") String userName) {
@@ -43,12 +40,8 @@ public class ShellCommand {
     @ShellMethod(value = "Get All Question and answer", key = {"qestion","q"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  getQuestionAnswer(){
-      Question[] questions = this.questionService.getAllQuestions();
-      System.out.println("All questions and answer");
-      for(int i = 0; i < questions.length; i++){
-          System.out.println(questions[i].getQuestion());
-          System.out.println(questions[i].getRightAnswer());
-      }
+      this.questionService.consoleQuestionAnswer();
+
     }
 
     private Availability isPublishEventCommandAvailable() {
