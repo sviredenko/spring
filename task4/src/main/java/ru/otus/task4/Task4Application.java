@@ -12,9 +12,7 @@ public class Task4Application {
 	public static void main(String[] args) {
 
 		SpringApplication.run(Task4Application.class, args);
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Task4Application.class);
-		QuestionService console  = context.getBean(QuestionService.class);
-		console.consoleLog();
+
 
 	}
 

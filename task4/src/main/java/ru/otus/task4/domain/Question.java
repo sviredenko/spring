@@ -12,6 +12,7 @@ public class Question {
     public String getQuestion() {
         return question;
     }
+    public String getRightAnswer(){return rightAnswer;}
     public boolean checkQuestion(){
         return answer.equals(rightAnswer);
     }
