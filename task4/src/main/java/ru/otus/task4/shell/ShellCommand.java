@@ -2,22 +2,18 @@ package ru.otus.task4.shell;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 import org.springframework.shell.standard.ShellOption;
-import ru.otus.task4.Task4Application;
-import ru.otus.task4.domain.Question;
-import ru.otus.task4.service.QuestionService;
+import ru.otus.task4.service.Service;
 
 @ShellComponent
 @RequiredArgsConstructor
 public class ShellCommand {
     private String userName;
-    final private QuestionService questionService;
+    final private Service service;
 
 
 
@@ -26,21 +22,35 @@ public class ShellCommand {
         this.userName = userName;
         return String.format("Добро пожаловать: %s", userName);
     }
-    @ShellMethod(value = "asking", key = {"a"})
+    @ShellMethod(value = "Number of  book in archive", key = {"Number of books in archive","t"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
-    public void asking(){
-        this.questionService.consoleLog();
+    public void CountBooks(){
+        service.numberOfBook();
+        return;
     }
-    @ShellMethod(value = "showTrueNumberAnswer", key = {"trueAnswer","t"})
+    @ShellMethod(value = "Get All books", key = {"gbs"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
-    public String trueAnswer(){
-        return  String.format("Number of right answer " +this.questionService.getRightAnswer());
+    public void  getAllBook(){
+      this.service. getAllBook();
 
     }
-    @ShellMethod(value = "Get All Question and answer", key = {"qestion","q"})
+    @ShellMethod(value = "insert book", key = {"ib"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
-    public void  getQuestionAnswer(){
-      this.questionService.consoleQuestionAnswer();
+    public void  insertBook(){
+        this.service.insertBook();
+
+    }
+
+    @ShellMethod(value = "get book by id", key = {"gbi"})
+    @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
+    public void  getBookById(Long id){
+        this.service.getBookById(id);
+
+    }
+    @ShellMethod(value = "delete  book by id", key = {"dbi"})
+    @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
+    public void  deleteBookById(Long id){
+        this.service.deleteBookById(id);
 
     }
 
