@@ -5,10 +5,11 @@ import ru.otus.task4.domain.Book;
 import java.util.List;
 
 public interface Dao {
-    public int count();
-    public List<Book> getAllBooks();
+    int count();
+    List<Book> getAllBooks();
 
-    public void insertBook(Book book);
-    public Book getBookById(Long id);
-    public void deleteBookById(Long id);
+    void insertBook(Book book);
+    Book getBookById(Long id);
+    void deleteBookById(Long id);
+    void update(Book book);
 }

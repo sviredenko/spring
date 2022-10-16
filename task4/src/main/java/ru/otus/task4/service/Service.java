@@ -49,6 +49,20 @@ public class Service {
       Book book = this.dao.getBookById(id);;
         System.out.println(book.getId() + "." + book.getBookName());
     }
+
+    public void updateBookById(){
+        Scanner console = new Scanner(System.in);
+        System.out.println("Enter id");
+        long id = Long.parseLong(console.nextLine());
+        System.out.println("Enter bookName");
+        String bookName  = console.nextLine();
+        System.out.println("Enter keyAuthor");
+        long keyAuthor = Long.parseLong(console.nextLine());
+        System.out.println("Enter keyGender");
+        long keyGender = Long.parseLong(console.nextLine());
+        Book book = new Book(id, bookName, keyAuthor, keyGender);
+        this.dao.update(book);
+    }
     public void deleteBookById(Long id){
       this.dao.deleteBookById(id);
     }

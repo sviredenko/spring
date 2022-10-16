@@ -9,6 +9,7 @@ import ru.otus.task4.domain.Book;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +36,13 @@ public class DaoJdbc implements Dao {
     }
     @Override
     public void insertBook(Book book){
-        namedParameterJdbcOperations.update("insert into books (id,`bookName`,keyAuthor,keyGender) values (:id, :bookName,:keyAuthor,:keyGender)",
-                Map.of("id",book.getId(),"bookName",book.getBookName(),"keyAuthor",book.getKeyAuthor(),"keyGender",book.getKeyGender()));
+        namedParameterJdbcOperations.update("insert into books " +
+                        "(id,`bookName`,keyAuthor,keyGender) " +
+                        "values (:id, :bookName,:keyAuthor,:keyGender)",
+                Map.of("id",book.getId(),
+                        "bookName",book.getBookName(),
+                        "keyAuthor",book.getKeyAuthor(),
+                        "keyGender",book.getKeyGender()));
     }
     @Override
     public Book getBookById(Long id){
@@ -52,6 +58,16 @@ public class DaoJdbc implements Dao {
                 "delete from books where id = :id", params
         );
 
+    }
+
+    @Override
+    public void update(Book book) {
+        final Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id",book.getId());
+        params.put("bookName",book.getBookName());
+        params.put("keyAuthor",book.getKeyAuthor());
+        params.put("keyGender",book.getKeyGender());
+        namedParameterJdbcOperations.update("update BOOKS set bookName = :bookName, keyAuthor = :keyAuthor, keyGender = :keyGender where id = :id",params);
     }
 
     private static class BookMapper implements RowMapper<Book> {

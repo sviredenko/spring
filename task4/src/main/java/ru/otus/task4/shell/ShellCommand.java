@@ -31,7 +31,7 @@ public class ShellCommand {
     @ShellMethod(value = "Get All books", key = {"gbs"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  getAllBook(){
-      this.service. getAllBook();
+      this.service.getAllBook();
 
     }
     @ShellMethod(value = "insert book", key = {"ib"})
@@ -53,6 +53,13 @@ public class ShellCommand {
         this.service.deleteBookById(id);
 
     }
+
+    @ShellMethod(value = "update nameBook", key = {"un"})
+    @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
+    public void updateBookById(){
+        this.service.updateBookById();
+    }
+
 
     private Availability isPublishEventCommandAvailable() {
         return userName == null? Availability.unavailable("Сначала залогиньтесь"): Availability.available();
