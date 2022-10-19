@@ -34,6 +34,18 @@ public class ShellCommand {
       this.service.getAllBook();
 
     }
+
+    @ShellMethod(value = "Get All authors", key = {"gaa"})
+    @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
+    public void  getAllAuthors(){
+        this.service.getAllAuthor();
+    }
+    @ShellMethod(value = "Get All genres", key = {"gag"})
+    @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
+    public void  getAllGenres(){
+        this.service.getAllGenre();
+    }
+
     @ShellMethod(value = "insert book", key = {"ib"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  insertBook(){

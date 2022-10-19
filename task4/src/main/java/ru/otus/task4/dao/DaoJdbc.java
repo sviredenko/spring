@@ -4,7 +4,9 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Component;
+import ru.otus.task4.domain.Author;
 import ru.otus.task4.domain.Book;
+import ru.otus.task4.domain.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +36,15 @@ public class DaoJdbc implements Dao {
     public List<Book> getAllBooks(){
         return namedParameterJdbcOperations.query("select * from books", new BookMapper());
     }
+
+    @Override
+    public List<Author> getAllAuthors(){
+        return namedParameterJdbcOperations.query("select * from authors", new AuthorMapper());
+    }
+    @Override
+    public List<Genre> getAllGenres(){
+        return namedParameterJdbcOperations.query("select * from genres", new GenreMapper());
+    }
     @Override
     public void insertBook(Book book){
         namedParameterJdbcOperations.update("insert into books " +
@@ -52,6 +63,8 @@ public class DaoJdbc implements Dao {
         );
 
     }
+
+
     public void deleteBookById(Long id){
         Map<String, Object> params = Collections.singletonMap("id", id);
         namedParameterJdbcOperations.update(
@@ -79,6 +92,25 @@ public class DaoJdbc implements Dao {
             long keyAuthor = resultSet.getLong("keyAuthor");
             long keyGender = resultSet.getLong("keyGender");
             return new Book(id, name, keyAuthor, keyGender );
+        }
+    }
+
+    private static class AuthorMapper implements RowMapper<Author> {
+
+        @Override
+        public Author mapRow(ResultSet resultSet, int i) throws SQLException {
+            long id = resultSet.getLong("id");
+            String name = resultSet.getString("name");
+            return new Author(id, name);
+        }
+    }
+    private static class GenreMapper implements RowMapper<Genre> {
+
+        @Override
+        public Genre mapRow(ResultSet resultSet, int i) throws SQLException {
+            long id = resultSet.getLong("id");
+            String genre = resultSet.getString("genre");
+            return new Genre(id, genre);
         }
     }
 
