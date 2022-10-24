@@ -2,18 +2,21 @@ package ru.otus.task4.shell;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 import org.springframework.shell.standard.ShellOption;
-import ru.otus.task4.service.Service;
+import ru.otus.task4.service.ServiceBook;
 
 @ShellComponent
 @RequiredArgsConstructor
 public class ShellCommand {
     private String userName;
-    final private Service service;
+
+
+    final private ServiceBook service;
 
 
 
@@ -25,7 +28,7 @@ public class ShellCommand {
     @ShellMethod(value = "Number of  book in archive", key = {"Number of books in archive","t"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void CountBooks(){
-        service.numberOfBook();
+        service.getNumberOfBook();
         return;
     }
     @ShellMethod(value = "Get All books", key = {"gbs"})
@@ -35,7 +38,7 @@ public class ShellCommand {
 
     }
 
-    @ShellMethod(value = "Get All authors", key = {"gaa"})
+   /* @ShellMethod(value = "Get All authors", key = {"gaa"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  getAllAuthors(){
         this.service.getAllAuthor();
@@ -44,12 +47,12 @@ public class ShellCommand {
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  getAllGenres(){
         this.service.getAllGenre();
-    }
+    }*/
 
     @ShellMethod(value = "insert book", key = {"ib"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  insertBook(){
-        this.service.insertBook();
+        this.service.saveBook();
 
     }
 
@@ -66,13 +69,12 @@ public class ShellCommand {
 
     }
 
-    @ShellMethod(value = "update nameBook", key = {"un"})
+   /* @ShellMethod(value = "update nameBook", key = {"un"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void updateBookById(){
         this.service.updateBookById();
     }
-
-
+*/
     private Availability isPublishEventCommandAvailable() {
         return userName == null? Availability.unavailable("Сначала залогиньтесь"): Availability.available();
     }
