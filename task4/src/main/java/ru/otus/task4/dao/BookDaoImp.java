@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @Repository
-@Transactional
 public class BookDaoImp implements BookDao{
 
     @PersistenceContext
@@ -24,17 +24,20 @@ public class BookDaoImp implements BookDao{
     }
 
 
+
     @Override
     public int count() {
-        Query query =em.createQuery("select count(*) from book");
-        return query.getFirstResult();
+        Query query =em.createQuery("select count(*) from Book s");
+        return (int) query.getSingleResult();
     }
+
 
     @Override
     public List<Book> getAllBooks(){
-        Query query = em.createQuery("select s from Book s " );
+        TypedQuery<Book> query =  em.createQuery("select s from Book s ", Book.class);
         return query.getResultList();
     }
+
 
     @Override
     public void deleteBookById(Long id) {
@@ -43,14 +46,17 @@ public class BookDaoImp implements BookDao{
         query.executeUpdate();
     }
 
+
+
     @Override
     public Optional<Book> getBookById(Long id) {
         return Optional.ofNullable(em.find(Book.class, id));
     }
 
+
     @Override
     public Book saveBook(Book book){
-        if(book.getId() == 0){
+        if(book.getId() == 0 ){
             em.persist(book);
             return book;
         }

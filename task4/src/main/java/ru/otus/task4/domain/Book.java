@@ -15,25 +15,29 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Books")
+@Table(name = "BOOKS")
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "book")
     private String bookName;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "BOOK_AUTHOR", joinColumns = @JoinColumn(name = "book_Id"),
-            inverseJoinColumns = @JoinColumn(name = "author_Id"))
+    @ManyToMany(targetEntity = Author.class,  cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> Authors;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @ManyToMany(targetEntity = Genre.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "BOOK_GENRE", joinColumns = @JoinColumn(name = "book_Id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_Id"))
+
+    @ManyToMany(targetEntity = Genre.class,  cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> Genres;
+
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private List<Comment> comments;
 }

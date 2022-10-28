@@ -1,5 +1,6 @@
 package ru.otus.task4.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,15 +13,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "AUTHORS")
-public class Author {
+@Table(name = "Comments")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  long id;
+    private long  id;
 
-    @Column(name = "author")
-    private String author;
-
-
+    @Column(name = "comment")
+    private String comment;
 
 }

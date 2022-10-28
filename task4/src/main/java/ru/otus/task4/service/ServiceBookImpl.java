@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.otus.task4.dao.BookDao;
+import ru.otus.task4.domain.Author;
 import ru.otus.task4.domain.Book;
+import ru.otus.task4.domain.Comment;
+import ru.otus.task4.domain.Genre;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import javax.transaction.Transactional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,20 +22,26 @@ public class ServiceBookImpl implements ServiceBook{
 
    @Override
    public int getNumberOfBook(){
-       System.out.println(dao.count());
-       return dao.count();
+       int res = dao.count();
+       System.out.println(res);
+       return res;
    }
     @Override
     public void getAllBook(){
         List<Book> books = dao.getAllBooks();
         for(int i = 0; i < books.size(); i++){
-            System.out.println(books.get(i).getId() + "." + books.get(i).getBookName());
+            System.out.print(books.get(i).getId() + "." + books.get(i).getBookName() );
+            if(books.get(i).getAuthors().size() > 0)
+                System.out.println(" By " + books.get(i).getAuthors().stream().map(x -> x.getAuthor()).collect(Collectors.joining(", ")));
+            if(books.get(i).getGenres().size() > 0)
+                System.out.println("  genres: " + books.get(i).getGenres().stream().map(x -> x.getGenre()).collect(Collectors.joining(", ")));
         }
     }
 
     @Override
     public void deleteBookById(Long id) {
-        this.dao.deleteBookById(id);
+       System.out.println("Delete by id:" + id);
+       this.dao.deleteBookById(id);
     }
 
     @Override
@@ -43,18 +51,49 @@ public class ServiceBookImpl implements ServiceBook{
 
     }
 
+    @Transactional
     @Override
     public void saveBook(){
-        System.out.println("Enter ypur book");
+        List<Author> authorNames = new ArrayList<Author>();
+        List<Genre> genreNames = new ArrayList<Genre>();
+        System.out.println("Enter your book");
         Scanner in = new Scanner(System.in);
         String bookName = in.nextLine();
+        System.out.println("Enter authors if get end write 0");
         String authorName = in.nextLine();
+        Author author = new Author();
+        author.setId(0);
+        author.setAuthor(authorName);
+        authorNames.add(author);
+        while(!authorName.equals("0")) {
+            authorName = in.nextLine();
+            author = new Author();
+            author.setId(0);
+            author.setAuthor(authorName);
+            authorNames.add(author);
+        }
+
+        System.out.println("Enter genres if get end write 0");
         String genreName = in.nextLine();
-        List<String> ls1 = new ArrayList<String>();
-        ls1.add("wwgew");
-        List<String> ls2 = new ArrayList<String>();
-        ls2.add("wwgew");
-        this.dao.saveBook(new Book());
+        Genre genre = new Genre();
+        genre.setId(0);
+        genre.setGenre(genreName);
+        genreNames.add(genre);
+        while(!genreName.equals("0")) {
+            genreName = in.nextLine();
+            genre = new Genre();
+            genre.setId(0);
+            genre.setGenre(genreName);
+            genreNames.add(genre);
+        }
+        Book book = new Book();
+        book.setId(0);
+        book.setBookName(bookName);
+        book.setAuthors(authorNames);
+        book.setComments(new ArrayList<Comment>());
+        book.setGenres(genreNames);
+
+        this.dao.saveBook(book);
 
     }
 
