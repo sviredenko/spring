@@ -12,7 +12,7 @@ create table AUTHORS(
 create table COMMENTS(
     id bigint  NOT NULL AUTO_INCREMENT,
     comment varchar(255),
-    book_id bigint references BOOKS(id) on update cascade,
+    book_id bigint references BOOKS(id) on delete cascade,
     primary key(id)
 );
 
@@ -24,13 +24,13 @@ create table GENRES(
 
 
 create table book_author(
-    book_id bigint  references BOOKS(id) on update cascade,
-    author_id bigint  references AUTHORS(id),
+    book_id bigint  references BOOKS(id) on delete cascade,
+    author_id bigint  references AUTHORS(id) on delete cascade,
     primary key (book_id, author_id)
 );
 
 create table book_genre(
-    book_id bigint  references BOOKS(id) on update cascade,
-    genre_id bigint references GENRES(id),
+    book_id bigint  references BOOKS(id) on delete cascade,
+    genre_id bigint references GENRES(id) on delete cascade ,
     primary key (book_id, genre_id)
 );

@@ -1,7 +1,6 @@
 package ru.otus.task4.dao;
 
-import org.springframework.jdbc.core.JdbcOperations;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.otus.task4.domain.Book;
 
@@ -9,16 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookDao  {
+public interface BookDao extends JpaRepository<Book, Long> {
 
-   int count();
-   List<Book> getAllBooks();
+   long count();
+   List<Book> findAll();
 
-   void deleteBookById(Long id);
+   //void deleteById(Long id);
 
    Optional<Book> getBookById(Long id);
 
-   Book saveBook(Book book);
-
+   Book save(Book book);
 
 }

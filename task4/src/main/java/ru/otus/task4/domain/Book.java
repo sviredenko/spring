@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "BOOKS")
-public class Book {
+public class Book{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -35,9 +35,10 @@ public class Book {
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private List<Genre> Genres;
+    private List<Genre> genres;
 
     @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinColumn(name = "id")
     private List<Comment> comments;
 }

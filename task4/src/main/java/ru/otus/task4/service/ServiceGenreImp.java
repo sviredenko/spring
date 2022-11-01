@@ -15,7 +15,7 @@ public class ServiceGenreImp implements ServiceGenre{
 
     @Override
     public void getAllGenre(){
-        List<Genre> genres = this.genreDao.getAllGenre();
+        List<Genre> genres = this.genreDao.findAll();
         for(int i = 0; i < genres.size(); i++){
             System.out.println(genres.get(i).getId() + "." +genres.get(i).getGenre());
         }

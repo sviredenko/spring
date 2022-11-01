@@ -6,5 +6,5 @@ public interface ServiceBook {
     void deleteBookById(Long id);
     void getBookById(Long Id);
     void saveBook();
-    int getNumberOfBook();
+    long getNumberOfBook();
 }

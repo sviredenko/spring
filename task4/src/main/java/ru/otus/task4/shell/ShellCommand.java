@@ -10,6 +10,8 @@ import org.springframework.shell.standard.ShellMethodAvailability;
 import org.springframework.shell.standard.ShellOption;
 import ru.otus.task4.service.*;
 
+import static java.lang.Math.abs;
+
 @ShellComponent
 @RequiredArgsConstructor
 public class ShellCommand {
@@ -74,6 +76,7 @@ public class ShellCommand {
     @ShellMethod(value = "delete  book by id", key = {"dbi"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  deleteBookById(@ShellOption(defaultValue = "None") Long id){
+
         this.service.deleteBookById(id);
 
     }

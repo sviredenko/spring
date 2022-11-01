@@ -21,14 +21,14 @@ public class ServiceBookImpl implements ServiceBook{
     BookDao dao;
 
    @Override
-   public int getNumberOfBook(){
-       int res = dao.count();
+   public long getNumberOfBook(){
+       long res = dao.count();
        System.out.println(res);
        return res;
    }
     @Override
     public void getAllBook(){
-        List<Book> books = dao.getAllBooks();
+        List<Book> books = dao.findAll();
         for(int i = 0; i < books.size(); i++){
             System.out.print(books.get(i).getId() + "." + books.get(i).getBookName() );
             if(books.get(i).getAuthors().size() > 0)
@@ -38,10 +38,11 @@ public class ServiceBookImpl implements ServiceBook{
         }
     }
 
+    @Transactional
     @Override
     public void deleteBookById(Long id) {
        System.out.println("Delete by id:" + id);
-       this.dao.deleteBookById(id);
+       this.dao.deleteById(id);
     }
 
     @Override
@@ -93,7 +94,7 @@ public class ServiceBookImpl implements ServiceBook{
         book.setComments(new ArrayList<Comment>());
         book.setGenres(genreNames);
 
-        this.dao.saveBook(book);
+        this.dao.save(book);
 
     }
 
