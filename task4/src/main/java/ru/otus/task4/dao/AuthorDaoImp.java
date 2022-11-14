@@ -11,11 +11,8 @@ import java.util.List;
 @Repository
 public class AuthorDaoImp implements AuthorDao{
     @PersistenceContext
-    private final EntityManager em;
+    private EntityManager em;
 
-    public AuthorDaoImp(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public List<Author> getAllAuthor(){

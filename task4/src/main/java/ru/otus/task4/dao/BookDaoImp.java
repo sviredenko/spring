@@ -17,18 +17,15 @@ import java.util.Optional;
 public class BookDaoImp implements BookDao{
 
     @PersistenceContext
-    private final EntityManager em;
+    private  EntityManager em;
 
-    public BookDaoImp(EntityManager em) {
-        this.em = em;
-    }
 
 
 
     @Override
-    public int count() {
+    public long count() {
         Query query =em.createQuery("select count(*) from Book s");
-        return (int) query.getSingleResult();
+        return (long) query.getSingleResult();
     }
 
 

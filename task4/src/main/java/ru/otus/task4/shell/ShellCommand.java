@@ -34,6 +34,12 @@ public class ShellCommand {
         service.getNumberOfBook();
         return;
     }
+    @ShellMethod(value = "Insert comment in book by id", key = {"icb"})
+    @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
+    public void insertCommentById(){
+        serviceComment.putCommentById();
+        return;
+    }
     @ShellMethod(value = "Get All books", key = {"gbs"})
     @ShellMethodAvailability(value = "isPublishEventCommandAvailable")
     public void  getAllBook(){

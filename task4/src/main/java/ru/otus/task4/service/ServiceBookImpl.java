@@ -1,7 +1,6 @@
 package ru.otus.task4.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.otus.task4.dao.BookDao;
 import ru.otus.task4.domain.Author;
@@ -17,12 +16,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ServiceBookImpl implements ServiceBook{
 
-   @Autowired
-    BookDao dao;
+    private final BookDao dao;
 
    @Override
-   public int getNumberOfBook(){
-       int res = dao.count();
+   public long getNumberOfBook(){
+       long res = dao.count();
        System.out.println(res);
        return res;
    }
@@ -61,30 +59,23 @@ public class ServiceBookImpl implements ServiceBook{
         String bookName = in.nextLine();
         System.out.println("Enter authors if get end write 0");
         String authorName = in.nextLine();
-        Author author = new Author();
-        author.setId(0);
-        author.setAuthor(authorName);
-        authorNames.add(author);
         while(!authorName.equals("0")) {
-            authorName = in.nextLine();
-            author = new Author();
+            Author author = new Author();
             author.setId(0);
             author.setAuthor(authorName);
             authorNames.add(author);
+            authorName = in.nextLine();
         }
 
         System.out.println("Enter genres if get end write 0");
         String genreName = in.nextLine();
-        Genre genre = new Genre();
-        genre.setId(0);
-        genre.setGenre(genreName);
-        genreNames.add(genre);
         while(!genreName.equals("0")) {
-            genreName = in.nextLine();
-            genre = new Genre();
+
+            Genre genre = new Genre();
             genre.setId(0);
             genre.setGenre(genreName);
             genreNames.add(genre);
+            genreName = in.nextLine();
         }
         Book book = new Book();
         book.setId(0);

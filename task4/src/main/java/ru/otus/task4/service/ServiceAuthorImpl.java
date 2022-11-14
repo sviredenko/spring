@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ServiceAuthorImpl implements ServiceAuthor{
 
-    final private AuthorDao dao;
+    private final  AuthorDao dao;
 
     @Autowired
     public ServiceAuthorImpl(AuthorDao dao){

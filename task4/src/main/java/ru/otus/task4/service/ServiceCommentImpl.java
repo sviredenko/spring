@@ -25,4 +25,14 @@ public class ServiceCommentImpl implements ServiceComment{
         }
         return;
     }
+    @Override
+    public void putCommentById(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter book id");
+        Long id = Long.parseLong(in.nextLine());
+        System.out.println("Enter comment");
+        String str = in.nextLine();
+        Comment comment = new Comment(0,str);
+        this.commentDao.putCommentByBookId(id, comment);
+    }
 }

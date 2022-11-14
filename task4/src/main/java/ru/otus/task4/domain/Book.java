@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "BOOKS")
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "book")
@@ -38,6 +38,6 @@ public class Book {
     private List<Genre> Genres;
 
     @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "book_id")
     private List<Comment> comments;
 }

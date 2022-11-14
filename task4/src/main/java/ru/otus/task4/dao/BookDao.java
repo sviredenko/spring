@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface BookDao  {
 
-   int count();
+   long count();
    List<Book> getAllBooks();
 
    void deleteBookById(Long id);
