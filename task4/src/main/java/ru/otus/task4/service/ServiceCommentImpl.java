@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.otus.task4.dao.CommentDao;
 import ru.otus.task4.domain.Comment;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class ServiceCommentImpl implements ServiceComment{
 
     CommentDao commentDao;
 
+    @Transactional
     @Override
     public void getAllCommnetsById(){
         System.out.println("Please enter id of book");
@@ -25,6 +27,7 @@ public class ServiceCommentImpl implements ServiceComment{
         }
         return;
     }
+    @Transactional
     @Override
     public void putCommentById(){
         Scanner in = new Scanner(System.in);

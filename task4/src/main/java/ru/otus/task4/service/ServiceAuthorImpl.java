@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.otus.task4.dao.AuthorDao;
 import ru.otus.task4.domain.Author;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -17,6 +18,8 @@ public class ServiceAuthorImpl implements ServiceAuthor{
     public ServiceAuthorImpl(AuthorDao dao){
         this.dao = dao;
     }
+
+    @Transactional
     @Override
     public void getAllAuthor(){
         List<Author> res =  this.dao.getAllAuthor();

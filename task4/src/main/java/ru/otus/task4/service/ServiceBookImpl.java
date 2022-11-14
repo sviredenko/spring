@@ -18,12 +18,15 @@ public class ServiceBookImpl implements ServiceBook{
 
     private final BookDao dao;
 
+    @Transactional
    @Override
    public long getNumberOfBook(){
        long res = dao.count();
        System.out.println(res);
        return res;
    }
+
+    @Transactional
     @Override
     public void getAllBook(){
         List<Book> books = dao.getAllBooks();
@@ -36,12 +39,14 @@ public class ServiceBookImpl implements ServiceBook{
         }
     }
 
+    @Transactional
     @Override
     public void deleteBookById(Long id) {
        System.out.println("Delete by id:" + id);
        this.dao.deleteBookById(id);
     }
 
+    @Transactional
     @Override
     public void getBookById(Long Id){
         Optional<Book> book = this.dao.getBookById(Id);
