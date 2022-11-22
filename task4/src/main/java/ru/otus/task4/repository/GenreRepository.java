@@ -7,7 +7,7 @@ import ru.otus.task4.domain.Genre;
 import java.util.List;
 import java.util.Optional;
 
-public interface GenreRepository extends JpaRepository<Genre, Long> {
+public interface GenreRepository extends JpaRepository<Genre, Long>, GenreRepositoryCustom{
     List<Genre> findAll();
 
 

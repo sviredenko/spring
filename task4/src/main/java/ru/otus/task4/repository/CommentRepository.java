@@ -6,7 +6,7 @@ import ru.otus.task4.domain.Comment;
 import java.util.List;
 
 
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface CommentRepository {
     List<Comment> findCommentByBookId(Long id);
     void putCommentByBookId(Long id, Comment comment);
 }
