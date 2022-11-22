@@ -2,11 +2,12 @@ package ru.otus.task4.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.otus.task4.dao.BookDao;
+import ru.otus.task4.repository.BookRepository;
 import ru.otus.task4.domain.Author;
 import ru.otus.task4.domain.Book;
 import ru.otus.task4.domain.Comment;
 import ru.otus.task4.domain.Genre;
+import ru.otus.task4.repository.GenreRepository;
 
 import javax.transaction.Transactional;
 import java.util.*;
@@ -16,7 +17,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ServiceBookImpl implements ServiceBook{
 
-    private final BookDao dao;
+    private final BookRepository dao;
+    private final GenreRepository genreRepository;
 
     @Transactional
    @Override
@@ -75,10 +77,17 @@ public class ServiceBookImpl implements ServiceBook{
         System.out.println("Enter genres if get end write 0");
         String genreName = in.nextLine();
         while(!genreName.equals("0")) {
+            Optional<Genre> genreOptional = genreRepository.getGenreByName(genreName);
+            Genre genre;
+            if(genreOptional.isEmpty()) {
+                genre = new Genre();
+                genre.setId(0);
+                genre.setGenre(genreName);
 
-            Genre genre = new Genre();
-            genre.setId(0);
-            genre.setGenre(genreName);
+            }
+            else{
+                genre = genreOptional.get();
+            }
             genreNames.add(genre);
             genreName = in.nextLine();
         }

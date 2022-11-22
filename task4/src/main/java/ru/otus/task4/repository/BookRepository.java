@@ -1,7 +1,5 @@
-package ru.otus.task4.dao;
+package ru.otus.task4.repository;
 
-import org.springframework.jdbc.core.JdbcOperations;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 import ru.otus.task4.domain.Book;
 
@@ -9,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookDao  {
+public interface BookRepository {
 
    long count();
    List<Book> getAllBooks();

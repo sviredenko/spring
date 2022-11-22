@@ -2,7 +2,7 @@ package ru.otus.task4.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.otus.task4.dao.CommentDao;
+import ru.otus.task4.repository.CommentRepository;
 import ru.otus.task4.domain.Comment;
 
 import javax.transaction.Transactional;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 @Service
 public class ServiceCommentImpl implements ServiceComment{
 
-    CommentDao commentDao;
+    CommentRepository commentDao;
 
     @Transactional
     @Override

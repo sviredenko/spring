@@ -1,10 +1,10 @@
-package ru.otus.task4.dao;
+package ru.otus.task4.repository;
 
 import ru.otus.task4.domain.Author;
 
 import java.util.List;
 
-public interface AuthorDao {
+public interface AuthorRepository {
     List<Author> getAllAuthor();
 
 }

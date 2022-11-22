@@ -2,7 +2,7 @@ package ru.otus.task4.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.otus.task4.dao.AuthorDao;
+import ru.otus.task4.repository.AuthorRepository;
 import ru.otus.task4.domain.Author;
 
 import javax.transaction.Transactional;
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class ServiceAuthorImpl implements ServiceAuthor{
 
-    private final  AuthorDao dao;
+    private final AuthorRepository dao;
 
     @Autowired
-    public ServiceAuthorImpl(AuthorDao dao){
+    public ServiceAuthorImpl(AuthorRepository dao){
         this.dao = dao;
     }
 

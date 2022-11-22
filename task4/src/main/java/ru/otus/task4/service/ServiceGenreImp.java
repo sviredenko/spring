@@ -2,16 +2,17 @@ package ru.otus.task4.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.otus.task4.dao.GenreDao;
+import ru.otus.task4.repository.GenreRepository;
 import ru.otus.task4.domain.Genre;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class ServiceGenreImp implements ServiceGenre{
-    GenreDao genreDao;
+    GenreRepository genreDao;
 
 
     @Transactional
@@ -30,5 +31,11 @@ public class ServiceGenreImp implements ServiceGenre{
         for(int i = 0; i < genres.size(); i++){
             System.out.println(genres.get(i).getId() + "." + genres.get(i).getGenre());
         }
+    }
+
+    @Transactional
+    @Override
+    public Optional<Genre> getGenreByName(String name){
+         return this.genreDao.getGenreByName(name);
     }
 }

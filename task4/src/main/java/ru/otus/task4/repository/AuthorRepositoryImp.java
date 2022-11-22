@@ -1,4 +1,4 @@
-package ru.otus.task4.dao;
+package ru.otus.task4.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.otus.task4.domain.Author;
@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class AuthorDaoImp implements AuthorDao{
+public class AuthorRepositoryImp implements AuthorRepository {
     @PersistenceContext
     private EntityManager em;
 

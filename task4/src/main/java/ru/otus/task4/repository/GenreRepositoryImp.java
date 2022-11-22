@@ -1,4 +1,4 @@
-package ru.otus.task4.dao;
+package ru.otus.task4.repository;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -15,12 +15,12 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Repository
-public class GenreDaoImp implements GenreDao {
+public class GenreRepositoryImp implements GenreRepository {
 
     @PersistenceContext
     EntityManager em;
 
-    BookDao bookDao;
+    BookRepository bookRepository;
 
     @Override
     public List<Genre> getAllGenre() {
@@ -30,11 +30,22 @@ public class GenreDaoImp implements GenreDao {
 
     @Override
     public List<Genre> getGenreByBookId(Long id) {
-        Optional<Book> book = this.bookDao.getBookById(id);
+        Optional<Book> book = this.bookRepository.getBookById(id);
        if(book.isPresent())
            return book.get().getGenres();
        else
            return new ArrayList<Genre>();
     }
 
+    @Override
+    public Optional<Genre> getGenreByName(String name){
+        Query query = em.createQuery("select s from Genre s where s.genre = :genre");
+        query.setParameter("genre", name);
+        List<Genre> genres = query.getResultList();
+        if(genres.isEmpty()){
+             return Optional.empty();
+        }
+        else
+            return Optional.ofNullable(genres.get(0));
+    }
 }

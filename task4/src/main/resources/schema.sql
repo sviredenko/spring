@@ -12,7 +12,7 @@ create table AUTHORS(
 create table COMMENTS(
     id bigint  NOT NULL AUTO_INCREMENT,
     comment varchar(255),
-    book_id bigint references BOOKS(id) on update cascade,
+    book_id bigint references BOOKS(id) on delete cascade,
     primary key(id)
 );
 
