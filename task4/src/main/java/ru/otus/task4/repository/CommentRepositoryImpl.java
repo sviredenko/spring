@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 @RequiredArgsConstructor
-public class CommentRepositoryImp implements CommentRepository {
+@Repository
+public class CommentRepositoryImpl implements CommentRepository {
+
     private final BookRepository bookRepository;
 
     @Override
-    public List<Comment> getCommentByBookId(Long id){
-        Optional<Book> book = this.bookRepository.getBookById(id);
+    public List<Comment> findCommentByBookId(Long id){
+        Optional<Book> book = this.bookRepository.findById(id);
         if(book.isPresent()){
             return book.get().getComments();
         }
@@ -27,12 +28,12 @@ public class CommentRepositoryImp implements CommentRepository {
     }
     @Override
     public void putCommentByBookId(Long id, Comment comment){
-        Optional<Book> book = this.bookRepository.getBookById(id);
+        Optional<Book> book = this.bookRepository.findById(id);
         if(book.isPresent()) {
             List<Comment> comments = book.get().getComments();
             comments.add(comment);
             book.get().setComments(comments);
-            this.bookRepository.saveBook(book.get());
+            this.bookRepository.save(book.get());
         }
 
     }

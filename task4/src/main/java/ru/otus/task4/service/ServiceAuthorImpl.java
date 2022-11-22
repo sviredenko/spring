@@ -22,7 +22,7 @@ public class ServiceAuthorImpl implements ServiceAuthor{
     @Transactional
     @Override
     public void getAllAuthor(){
-        List<Author> res =  this.dao.getAllAuthor();
+        List<Author> res =  this.dao.findAll();
         for(int i = 0; i < res.size(); i++){
             System.out.println(res.get(i).getId() + "."  + res.get(i).getAuthor());
         }

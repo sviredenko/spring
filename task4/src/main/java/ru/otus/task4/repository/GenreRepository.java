@@ -1,12 +1,17 @@
 package ru.otus.task4.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import ru.otus.task4.domain.Genre;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface GenreRepository {
-    List<Genre> getAllGenre();
-    List<Genre> getGenreByBookId(Long id);
-    Optional<Genre> getGenreByName(String name);
+public interface GenreRepository extends JpaRepository<Genre, Long>, GenreRepositoryCustom{
+    List<Genre> findAll();
+
+
+    //@Query("Select l from Book s join Genre l on  where s.id = :id")
+
+    Optional<Genre> findByGenre(String name);
 }

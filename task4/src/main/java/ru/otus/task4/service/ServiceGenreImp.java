@@ -18,7 +18,7 @@ public class ServiceGenreImp implements ServiceGenre{
     @Transactional
     @Override
     public void getAllGenre(){
-        List<Genre> genres = this.genreDao.getAllGenre();
+        List<Genre> genres = this.genreDao.findAll();
         for(int i = 0; i < genres.size(); i++){
             System.out.println(genres.get(i).getId() + "." +genres.get(i).getGenre());
         }
@@ -27,7 +27,7 @@ public class ServiceGenreImp implements ServiceGenre{
     @Transactional
     @Override
     public void getGenreByBookId(Long id){
-        List<Genre> genres = this.genreDao.getGenreByBookId(id);
+        List<Genre> genres = this.genreDao.findByBookId(id);
         for(int i = 0; i < genres.size(); i++){
             System.out.println(genres.get(i).getId() + "." + genres.get(i).getGenre());
         }
@@ -36,6 +36,6 @@ public class ServiceGenreImp implements ServiceGenre{
     @Transactional
     @Override
     public Optional<Genre> getGenreByName(String name){
-         return this.genreDao.getGenreByName(name);
+         return this.genreDao.findByGenre(name);
     }
 }
