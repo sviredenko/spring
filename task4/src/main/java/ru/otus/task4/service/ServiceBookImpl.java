@@ -31,7 +31,7 @@ public class ServiceBookImpl implements ServiceBook{
     @Transactional
     @Override
     public void getAllBook(){
-        List<Book> books = dao.getAllBooks();
+        List<Book> books = dao.findAll();
         for(int i = 0; i < books.size(); i++){
             System.out.print(books.get(i).getId() + "." + books.get(i).getBookName() );
             if(books.get(i).getAuthors().size() > 0)
@@ -45,13 +45,13 @@ public class ServiceBookImpl implements ServiceBook{
     @Override
     public void deleteBookById(Long id) {
        System.out.println("Delete by id:" + id);
-       this.dao.deleteBookById(id);
+       this.dao.deleteById(id);
     }
 
     @Transactional
     @Override
     public void getBookById(Long Id){
-        Optional<Book> book = this.dao.getBookById(Id);
+        Optional<Book> book = this.dao.findById(Id);
         book.ifPresent(buf -> System.out.println(buf.getId() + "." + buf.getBookName()));
 
     }
@@ -77,7 +77,7 @@ public class ServiceBookImpl implements ServiceBook{
         System.out.println("Enter genres if get end write 0");
         String genreName = in.nextLine();
         while(!genreName.equals("0")) {
-            Optional<Genre> genreOptional = genreRepository.getGenreByName(genreName);
+            Optional<Genre> genreOptional = genreRepository.findByGenre(genreName);
             Genre genre;
             if(genreOptional.isEmpty()) {
                 genre = new Genre();
@@ -98,7 +98,7 @@ public class ServiceBookImpl implements ServiceBook{
         book.setComments(new ArrayList<Comment>());
         book.setGenres(genreNames);
 
-        this.dao.saveBook(book);
+        this.dao.save(book);
 
     }
 

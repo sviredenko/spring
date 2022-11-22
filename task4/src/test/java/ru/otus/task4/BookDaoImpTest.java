@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Import;
 import ru.otus.task4.domain.Author;
 import ru.otus.task4.domain.Book;
 import ru.otus.task4.domain.Genre;
-import ru.otus.task4.repository.BookRepositoryImp;
+import ru.otus.task4.repository.BookRepository;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,10 +21,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("BookDaoTest")
 @DataJpaTest
-@Import(BookRepositoryImp.class)
+@Import(BookRepository.class)
 public class BookDaoImpTest {
     @Autowired
-    private BookRepositoryImp dao;
+    private BookRepository dao;
 
     @Autowired
     TestEntityManager em;
@@ -37,7 +38,7 @@ public class BookDaoImpTest {
     @DisplayName("Check get all book")
     @Test
     void shouldCheckAllBooks(){
-        assertThat(dao.getAllBooks().size()).isEqualTo(1);
+        assertThat(dao.findAll().size()).isEqualTo(1);
     }
 
     @DisplayName("Check save book")
@@ -54,10 +55,10 @@ public class BookDaoImpTest {
         Author author1 = new Author(0,"Pushkin");
         author.add(author1);
         book.setAuthors(author);
-        dao.saveBook(book);
+        dao.save(book);
 
-        assertThat(dao.getAllBooks().size()).isEqualTo(2);
-        assertThat(dao.getBookById(2l).isPresent()).isEqualTo(true);
+        assertThat(dao.findAll().size()).isEqualTo(2);
+        assertThat(dao.findById(2l).isPresent()).isEqualTo(true);
     }
 
 

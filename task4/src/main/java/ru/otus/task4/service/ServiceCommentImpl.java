@@ -21,7 +21,7 @@ public class ServiceCommentImpl implements ServiceComment{
         System.out.println("Please enter id of book");
         Scanner in = new Scanner(System.in);
         long id = in.nextInt();
-        List<Comment> res =  this.commentDao.getCommentByBookId(id);
+        List<Comment> res =  this.commentDao.findCommentByBookId(id);
         for(int i = 0; i < res.size(); i++){
             System.out.println(res.get(i).getComment());
         }
